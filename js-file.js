@@ -5,6 +5,7 @@
 // by typing GLOBAL.variable. This avoids the danger of other apps
 // changing variables.
 const GLOBAL = (function() {
+    //anything defined here is inaccessible outside of GLOBAL
     const gridContainer = document.querySelector("#squares-container");
     let numberOfSquaresInRow = 16;
 
@@ -30,12 +31,21 @@ const GLOBAL = (function() {
         for (let i = 0; i < numberOfSquaresInRow; i+=1) {
             createRow(container);
         }
+        addListeners(container);
     }
     
-    createGrid(gridContainer)
+    function addListeners(container) {
+        container.addEventListener("mouseover", (event) => {
+            if (event.target.classList.contains("square")) {
+                event.target.classList.add("highlighted");
+            }
+        })
+    }
+
+    createGrid(gridContainer);
 
     return {
-        //variables defined here are usable outside of the GLOBAL variable
+        //anything defined here are usable outside of the GLOBAL variable
 
     }
 }());

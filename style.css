@@ -13,15 +13,16 @@
 }
 
 .square {
-    background-color: blue;
     flex: 1;
-    border: double;
+    border: solid;
 }
 
 .row {
-    background-color: red;
-    border: dotted;
     flex: 1;
     min-height: 0;
     display: flex;
+}
+
+.highlighted {
+    background-color: black;
 }
