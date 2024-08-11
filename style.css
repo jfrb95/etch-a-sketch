@@ -1,0 +1,16 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#squares-container {
+    height: 800px;
+    width: 800px;
+    border: solid;
+    display: flex;
+}
+
+.square {
+    
+}

@@ -4,4 +4,6 @@ It consists of a number of squares in a square grid, when the mouse moves over a
 
 The number of squares can be determined by the user from 1x1 to 100x100.
 
-The project is a way to practice my skill with flexbox, DOM manipulation, and some other things.
+The project provided by The Odin Project, and is a way to practice my skills with things including flexbox and DOM manipulation.
+
+I also took this as an opporunity to practice some extra things such as using closure to avoid the use of global variables.
