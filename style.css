@@ -9,10 +9,19 @@
     width: 800px;
     border: solid;
     display: flex;
+    flex-direction: column;
 }
 
 .square {
     background-color: blue;
-    height: 100px;
-    width: 100px;
+    flex: 1;
+    border: double;
+}
+
+.row {
+    background-color: red;
+    border: dotted;
+    flex: 1;
+    min-height: 0;
+    display: flex;
 }

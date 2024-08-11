@@ -5,19 +5,37 @@
 // by typing GLOBAL.variable. This avoids the danger of other apps
 // changing variables.
 const GLOBAL = (function() {
-    const squaresContainer = document.querySelector("#squares-container");
-    
-    function createSquare() {
+    const gridContainer = document.querySelector("#squares-container");
+    let numberOfSquaresInRow = 16;
+
+
+    function createSquare(container) {
         const square = document.createElement("div");
         square.classList.add("square");
-        squaresContainer.appendChild(square);
+        container.appendChild(square);
     }
 
-    for (let i = 0; i < 16; i += 1) {
+    function createRow(container) {
+        const row = document.createElement("div");
+        row.classList.add("row");
 
+        for (let i = 0; i < numberOfSquaresInRow; i += 1) {
+            createSquare(row);
+        }
+
+        container.appendChild(row);
     }
+
+    function createGrid(container) {
+        for (let i = 0; i < numberOfSquaresInRow; i+=1) {
+            createRow(container);
+        }
+    }
+    
+    createGrid(gridContainer)
+
     return {
-        //variables defined here are usable outside of the function
+        //variables defined here are usable outside of the GLOBAL variable
 
     }
 }());
