@@ -8,10 +8,25 @@ const GLOBAL = (function() {
     //anything defined here is inaccessible outside of GLOBAL
     const gridContainer = document.querySelector("#squares-container");
     const resetButton = document.querySelector("#reset-button");
+    const rainbowButton = document.querySelector("#rainbow-button");
+    const shaderButton = document.querySelector("#shader-button");
+    const defaultButton = document.querySelector("#default-button");
+    
+    let rainbow = false;
+    let shader = false;
+    
+    let red = 0;
+    let green = 0;
+    let blue = 0;
+    let opacity = 100;
+
     let numberOfSquaresInRow = 16;
 
-    function initializeResetButton(button) {
-        button.addEventListener("click", resetGrid);
+    function initializeButtons() {
+        initializeResetButton()
+        initializeRainbowButton()
+        initializeShaderButton()
+        initializeDefaultButton()
     }
     function createSquareIn(container) {
         const square = document.createElement("div");
@@ -38,7 +53,21 @@ const GLOBAL = (function() {
     //minor functions
     function highlightSquare(event) {
         if (event.target.classList.contains("square")) {
-            event.target.classList.add("highlighted");
+            if (rainbow) {
+                red = Math.floor(Math.random() * 255);
+                green = Math.floor(Math.random() * 255);
+                blue = Math.floor(Math.random() * 255);
+            } else if (shader) {
+                const tempOpacity = Number(event.target.style.opacity);
+                opacity = (tempOpacity + 10 / 100);
+                color = event.target.style.background;
+                if (event.target.style.background !== "rgb(0, 0, 0)") {
+                    opacity = 0.1;
+                }
+            }
+
+            event.target.style.background = `rgb(${red}, ${green}, ${blue})`;
+            event.target.style.opacity = opacity;
         }
     }
     function addListenersTo(container) {
@@ -63,10 +92,39 @@ const GLOBAL = (function() {
             return num
         }
     }
+    function initializeResetButton() {
+        resetButton.addEventListener("click", resetGrid);
+    }
+    function initializeRainbowButton() {
+        rainbowButton.addEventListener("click", () => {
+            shader = false;
+            rainbow = true;
+            opacity = 100;
+        });
+    }
+    function initializeShaderButton() {
+        shaderButton.addEventListener("click", () => {
+            rainbow = false;
+            shader = true;
+            red = 0;
+            green = 0;
+            blue = 0;
+        });
+    }
+    function initializeDefaultButton() {
+        defaultButton.addEventListener("click", () => {
+            rainbow = false;
+            shader = false;
+            red = 0;
+            green = 0;
+            blue = 0;
+            opacity = 100;
+        })
+    }
     
     //page setup
     createGridIn(gridContainer);
-    initializeResetButton(resetButton);
+    initializeButtons();
 
     return {
         //anything defined here is usable outside of GLOBAL
