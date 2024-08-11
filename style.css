@@ -10,6 +10,10 @@ body {
     align-items: center;
 }
 
+li {
+    list-style-type: none;
+}
+
 #squares-container {
     height: 800px;
     width: 800px;
@@ -32,7 +36,12 @@ body {
     background-color: black;
 }
 
-#reset-button {
-    margin: 10px;
+button {
     padding: 5px 10px;
+}
+
+#button-list {
+    display: flex;
+    margin: 10px;
+    gap: 10px;
 }
