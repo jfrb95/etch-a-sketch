@@ -13,3 +13,5 @@ I also took this as an opporunity to practice some extra things:
  - using closure to avoid the use of global variables.
  - extracting bits of code into separate functions to improve
     code readability.
+
+The Rainbow and Shader modes are an extra part added, not a necessary one. The current implementation keeps each mode separate. If I revisit this, I will turn the shader mode into an additional system where it darkens whatever color the square already is, and doesnt affect the color at all.
