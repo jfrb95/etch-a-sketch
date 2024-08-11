@@ -34,11 +34,6 @@ const GLOBAL = (function() {
         }
         addListenersTo(container);
     }
-    function resetGrid() {
-        numberOfSquaresInRow = Number(prompt("Enter the desired size between 1 and 100:", "16"));
-        clearGrid(gridContainer);
-        createGridIn(gridContainer);
-    }
 
     //minor functions
     function highlightSquare(event) {
@@ -52,6 +47,20 @@ const GLOBAL = (function() {
     function clearGrid(container) {
         while (container.firstChild) {
             container.removeChild(container.firstChild);
+        }
+    }
+    function resetGrid() {
+        numberOfSquaresInRow = getSizeInput();
+        clearGrid(gridContainer);
+        createGridIn(gridContainer);
+    }
+    function getSizeInput() {
+        let num = Number(prompt("Enter the desired size between 1 and 100:", "16"));
+
+        if (num < 1 || num > 100) {
+            return getSizeInput()
+        } else {
+            return num
         }
     }
     
