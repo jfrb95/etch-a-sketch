@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #squares-container {
     height: 800px;
     width: 800px;
@@ -14,7 +20,6 @@
 
 .square {
     flex: 1;
-    border: solid;
 }
 
 .row {
@@ -25,4 +30,9 @@
 
 .highlighted {
     background-color: black;
+}
+
+#reset-button {
+    margin: 10px;
+    padding: 5px 10px;
 }

@@ -7,45 +7,60 @@
 const GLOBAL = (function() {
     //anything defined here is inaccessible outside of GLOBAL
     const gridContainer = document.querySelector("#squares-container");
+    const resetButton = document.querySelector("#reset-button");
     let numberOfSquaresInRow = 16;
 
-
-    function createSquare(container) {
+    function initializeResetButton(button) {
+        button.addEventListener("click", resetGrid);
+    }
+    function createSquareIn(container) {
         const square = document.createElement("div");
         square.classList.add("square");
         container.appendChild(square);
     }
-
-    function createRow(container) {
+    function createRowIn(container) {
         const row = document.createElement("div");
         row.classList.add("row");
 
         for (let i = 0; i < numberOfSquaresInRow; i += 1) {
-            createSquare(row);
+            createSquareIn(row);
         }
 
         container.appendChild(row);
     }
-
-    function createGrid(container) {
+    function createGridIn(container) {
         for (let i = 0; i < numberOfSquaresInRow; i+=1) {
-            createRow(container);
+            createRowIn(container);
         }
-        addListeners(container);
+        addListenersTo(container);
+    }
+    function resetGrid() {
+        numberOfSquaresInRow = Number(prompt("Enter the desired size between 1 and 100:", "16"));
+        clearGrid(gridContainer);
+        createGridIn(gridContainer);
+    }
+
+    //minor functions
+    function highlightSquare(event) {
+        if (event.target.classList.contains("square")) {
+            event.target.classList.add("highlighted");
+        }
+    }
+    function addListenersTo(container) {
+        container.addEventListener("mouseover", highlightSquare);
+    } 
+    function clearGrid(container) {
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
     }
     
-    function addListeners(container) {
-        container.addEventListener("mouseover", (event) => {
-            if (event.target.classList.contains("square")) {
-                event.target.classList.add("highlighted");
-            }
-        })
-    }
-
-    createGrid(gridContainer);
+    //page setup
+    createGridIn(gridContainer);
+    initializeResetButton(resetButton);
 
     return {
-        //anything defined here are usable outside of the GLOBAL variable
+        //anything defined here is usable outside of GLOBAL
 
     }
 }());
